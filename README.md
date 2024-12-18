@@ -1,0 +1,1 @@
+Web App - This is a vehicle rental web application. With user registration and login, payments, interaction with the database (SQLite)
