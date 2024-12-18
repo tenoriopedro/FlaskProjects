@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LUXURY WHEELS | Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://kit.fontawesome.com/a108992fe6.js" crossorigin="anonymous"></script>
+</head>
+
+
+<body>
+    <header id="heading">
+        <div>
+            <h1 class="h1">luxury wheels</h1>
+
+            <h2 class="h1">
+                {% if current_user.is_authenticated %}
+                <i class="fa-solid fa-user"></i> {{ current_user.first_name }} {{ current_user.last_name }}
+                <a href="/logout">logout</a>
+                {% else %}
+                <a href="/login">login</a>
+                {% endif %}
+                <a href="/home">home</a>
+            </h2>
+        </div>
+   </header>
+    <h1>Choose your car</h1>
+
+    <nav class="menu-nav">
+        <div class="menuToggle"></div>
+        <h3>Filter</h3>
+
+        <div class="filter">
+            <form method="post">
+                <div class="catergory">
+                    <p>Category:</p>
+                    <label>
+                        <input type="checkbox" name="filter-category" value="gold">Gold
+                    </label>
+                    <label>
+                        <input type="checkbox" name="filter-category" value="silver">Silver
+                    </label>
+                    <label>
+                        <input type="checkbox" name="filter-category" value="economic">Economic
+                    </label>
+                    <hr>
+                </div>
+                <div class="vehicle_type">
+                    <p>Vehicle type:</p>
+                    {% if vehicle_type == "cars" %}
+                    <label>
+                        <input type="checkbox" name="filter-vehicle-type" value="suv">SUV
+                    </label>
+                    <label>
+                        <input type="checkbox" name="filter-vehicle-type" value="sedan">Sedan
+                    </label>
+                    <label>
+                        <input type="checkbox" name="filter-vehicle-type" value="compact">Compact
+                    </label>
+                    {% elif vehicle_type == "motorcycles" %}
+                    <label>
+                        <input type="checkbox" name="filter-vehicle-type" value="sport">Sport
+                    </label>
+                    <label>
+                        <input type="checkbox" name="filter-vehicle-type" value="touring">Touring
+                    </label>
+                    <label>
+                        <input type="checkbox" name="filter-vehicle-type" value="custom">Custom
+                    </label>
+                    <label>
+                        <input type="checkbox" name="filter-vehicle-type" value="naked">Naked
+                    </label>
+                    <label>
+                        <input type="checkbox" name="filter-vehicle-type" value="scooter">Scooter
+                    </label>
+
+                    {% else %}
+
+                    <label>
+                        <input type="checkbox" name="filter-vehicle-type" value="suv">SUV
+                    </label>
+                    <label>
+                        <input type="checkbox" name="filter-vehicle-type" value="sedan">Sedan
+                    </label>
+                    <label>
+                        <input type="checkbox" name="filter-vehicle-type" value="compact">Compact
+                    </label>
+                    <label>
+                        <input type="checkbox" name="filter-vehicle-type" value="sport">Sport
+                    </label>
+                    <label>
+                        <input type="checkbox" name="filter-vehicle-type" value="touring">Touring
+                    </label>
+                    <label>
+                        <input type="checkbox" name="filter-vehicle-type" value="custom">Custom
+                    </label>
+                    <label>
+                        <input type="checkbox" name="filter-vehicle-type" value="naked">Naked
+                    </label>
+                    <label>
+                        <input type="checkbox" name="filter-vehicle-type" value="scooter">Scooter
+                    </label>
+                    <label>
+                        <input type="checkbox" name="filter-vehicle-type" value="trail">Trail
+                    </label>
+
+                    {% endif %}
+                    <hr>
+                </div>
+                <div class="price">
+                    <p>Price(up to):</p>
+                    <label>
+                        <input type="checkbox" name="filter-price" value="100">100€
+                    </label>
+                    <label>
+                        <input type="checkbox" name="filter-price" value="200">200€
+                    </label>
+                    <label>
+                        <input type="checkbox" name="filter-price" value="201">200€+
+                    </label>
+                </div>
+
+                {% if not vehicle_type == "motorcycles" %}
+                <div class="seats">
+                    <hr>
+                    <p>Seats:</p>
+                    <label>
+                        <input type="checkbox" name="filter-seats" value="2">2
+                    </label>
+                    <label>
+                        <input type="checkbox" name="filter-seats" value="5">5
+                    </label>
+                </div>
+                {% endif %}
+                <div class="button-filter">
+                    <button type="submit">Search</button>
+                </div>
+            </form>
+        </div>
+    </nav>
+
+    <div class="not-found">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <ul class=flashes>
+            {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+    </div>
+
+    <div class="grid-container">
+
+        {% if vehicle_type == "cars" %}
+
+            {% if new_table_car %}
+                {% for value in new_table_car %}
+                    <div class="grid-item">
+                        <img alt="{{ value[1] }}" src="{{ value[11] }}">
+                        <form method="post">
+                            <div class="daily-price-car">
+                                <p class="total" >Total: {{ value[8] | int * days | int}},00€</p>
+                                <p class="daily" >Daily price: {{ value[8] }},00€</p>
+                            </div>
+                            <ul>
+                                <li>{{ value[1] }}</li>
+                                <li>Doors: {{ value[2] }}</li>
+                                <li>Seats: {{ value[3] }}</li>
+                                <li>Gear: {{ value[4] }}</li>
+                                <li>Vehicle Type: {{ value[5] }}</li>
+                                <li>A/C</li>
+                            </ul>
+                            <button class="button-car" name="choose-vehicle" value="{{value[1]}}" type="submit">Choose vehicle
+                            </button>
+                        </form>
+                    </div>
+                {% endfor %}
+            {% else %}
+
+                {% for value in car_table %}
+                    <div class="grid-item">
+                        <img alt="{{ value[1] }}" src="{{ value[11] }}">
+                        <form method="post">
+                            <div class="daily-price-car">
+                                <p class="total" >Total: {{ value[8] | int * days | int}},00€</p>
+                                <p class="daily" >Daily price: {{ value[8] }},00€</p>
+                            </div>
+                            <ul>
+                                <li>{{ value[1] }}</li>
+                                <li>Doors: {{ value[2] }}</li>
+                                <li>Seats: {{ value[3] }}</li>
+                                <li>Gear: {{ value[4] }}</li>
+                                <li>Vehicle Type: {{ value[5] }}</li>
+                                <li>A/C</li>
+                            </ul>
+                            <button class="button-car" name="choose-vehicle" value="{{value[1]}}" type="submit">Choose vehicle
+                            </button>
+                        </form>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+        <!-- caso o cliente queira moto-->
+        {% elif vehicle_type == "motorcycles" %}
+
+            {% if new_table_motorcycle %}
+                {% for value in new_table_motorcycle %}
+                    <div class="grid-item">
+                        <img alt="{{ value[1] }}" src="{{ value[11] }}">
+                        <form method="post">
+                            <div class="daily-price-motorcycle">
+                                <p class="total" >Total: {{ value[8] | int * days | int}},00€</p>
+                                <p class="daily" >Daily price: {{ value[8] }},00€</p>
+                            </div>
+                            <ul>
+                                <li>{{ value[1] }}</li>
+                                <li>Moto Type: {{ value[4] }}</li>
+                                <li>cc: {{ value[2] }}</li>
+                                <li>Power(kW): {{ value[3] }}</li>
+                            </ul>
+                            <button name="choose-vehicle" value="{{value[1]}}" type="submit">Choose vehicle
+                            </button>
+                        </form>
+                    </div>
+                {% endfor %}
+
+            {% else %}
+
+                {% for value in motorcycle_table %}
+
+                    <div class="grid-item">
+                        <img alt="{{ value[1] }}" src="{{ value[11] }}">
+                        <form method="post">
+                            <div class="daily-price-motorcycle">
+                                <p class="total" >Total: {{ value[8] | int * days | int}},00€</p>
+                                <p class="daily" >Daily price: {{ value[8] }},00€</p>
+                            </div>
+                            <ul>
+                                <li>{{ value[1] }}</li>
+                                <li>Moto Type: {{ value[4] }}</li>
+                                <li>cc: {{ value[2] }}</li>
+                                <li>Power(kW): {{ value[3] }}</li>
+                            </ul>
+                            <button type="submit" name="choose-vehicle" value="{{value[1]}}">Choose Vehicle</button>
+                        </form>
+                    </div>
+
+                {% endfor %}
+            {% endif %}
+
+        <!-- Todos os carros -->
+
+        {% else %}
+<!--        Se o filtro for acionado mostra a tabela-->
+            {% if new_table_all_vehicles %}
+
+                {% for value in new_table_all_vehicles %}
+
+                    {% if value[5] == "motorcycle" %}
+                        <div class="grid-item">
+                            <img alt="{{ value[1] }}" src="{{ value[11] }}">
+                            <form method="post">
+                                <div class="daily-price-motorcycle">
+                                    <p class="total" >Total: {{ value[8] | int * days | int}},00€</p>
+                                    <p class="daily" >Daily price: {{ value[8] }},00€</p>
+                                </div>
+                                <ul>
+                                    <li>{{ value[1] }}</li>
+                                    <li>Moto Type: {{ value[4] }}</li>
+                                    <li>cc: {{ value[2] | int }}</li>
+                                    <li>Power(kW): {{ value[3] }}</li>
+                                </ul>
+                                <button type="submit" name="choose-vehicle" value="{{value[1]}}">Choose Vehicle
+                                </button>
+                            </form>
+                        </div>
+
+                    <!--carros-->
+                    {% else %}
+                        <div class="grid-item">
+                            <img alt="{{ value[1] }}" src="{{ value[11] }}">
+                            <form method="post">
+                                <div class="daily-price-car">
+                                    <p class="total" >Total: {{ value[8] | int * days | int}},00€</p>
+                                    <p class="daily" >Daily price: {{ value[8] }},00€</p>
+                                </div>
+                                <ul>
+                                    <li>{{ value[1] }}</li>
+                                    <li>Doors: {{ value[2] | int }}</li>
+                                    <li>Seats: {{ value[3] | int }}</li>
+                                    <li>Gear: {{ value[4] }}</li>
+                                    <li>Vehicle Type: {{ value[5] }}</li>
+                                    <li>A/C</li>
+                                </ul>
+                                <button class="button-car" name="choose-vehicle" value="{{value[1]}}" type="submit">Choose vehicle
+                                </button>
+                            </form>
+                        </div>
+                    {% endif %}
+
+                {% endfor %}
+            {% else %}
+
+                {% for value in car_table %}
+
+                    <div class="grid-item">
+                        <img alt="{{ value[1] }}" src="{{ value[11] }}">
+                        <form method="post">
+                            <div class="daily-price-car">
+                                <p class="total" >Total: {{ value[8] | int * days | int}},00€</p>
+                                <p class="daily" >Daily price: {{ value[8] }},00€</p>
+                            </div>
+                            <ul>
+                                <li>{{ value[1] }}</li>
+                                <li>Doors: {{ value[2] }}</li>
+                                <li>Seats: {{ value[3] }}</li>
+                                <li>Gear: {{ value[4] }}</li>
+                                <li>Vehicle Type: {{ value[5] }}</li>
+                                <li>A/C</li>
+                            </ul>
+                            <button class="button-car" name="choose-vehicle" value="{{value[1]}}" type="submit">Choose vehicle
+                            </button>
+                        </form>
+                    </div>
+                {% endfor %}
+
+                {% for value in motorcycle_table %}
+
+                    <div class="grid-item">
+                        <img alt="{{ value[1] }}" src="{{ value[11] }}">
+                        <form method="post">
+                            <div class="daily-price-motorcycle">
+                                <p class="total" >Total: {{ value[8] | int * days | int}},00€</p>
+                                <p class="daily" >Daily price: {{ value[8] }},00€</p>
+                            </div>
+                            <ul>
+                                <li>{{ value[1] }}</li>
+                                <li>Moto Type: {{ value[5] }}</li>
+                                <li>cc: {{ value[2] }}</li>
+                                <li>Power(kW): {{ value[3] }}</li>
+                            </ul>
+                            <button type="submit" name="choose-vehicle" value="{{value[1]}}">Choose Vehicle</button>
+                        </form>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endif %}
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

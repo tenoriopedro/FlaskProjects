@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LUXURY WHEELS | Payment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://kit.fontawesome.com/a108992fe6.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="intro"></div>
+
+     {% if current_user.is_authenticated %}
+<header id="heading">
+    <div>
+        <h1 class="h1"><a href="/home">luxury wheels</a>
+        </h1>
+
+        <h2 class="h1">
+            <i class="fa-solid fa-user"></i> {{ current_user.first_name }} {{ current_user.last_name }}
+            <a href="/logout">logout</a>
+            <a href="/home">home</a>
+        </h2>
+    </div>
+</header>
+<section class="payment">
+    <div class="description-payment">
+        <h3>Payment Description</h3>
+        <ul>
+            <li>Client name: {{client_name}}</li>
+            <li>Pick up date: {{ pick_up_date }}</li>
+            <li>Drop off date: {{ drop_off_date }}</li>
+            <li>Vehicle: {{ user_vehicle }}</li>
+            <li>Price per day: €{{ price_day }},00</li>
+            <li>Days: {{ days }}</li>
+        </ul>
+        <h2>€{{ price_day * days }},00</h2>
+    </div>
+    <div class="form-payment">
+        <form method="post">
+            <div class="form-100">
+                <label>Email:</label>
+                <input name="email" type="text" required>
+            </div>
+            <div class="form-100">
+                <label>Card number:</label>
+                <input name="card-number" type="text" placeholder="1234 1234 1234 1234" required>
+                <div class="form-50">
+                    <input name="expiration" type="text" placeholder="MM/YY" min="5" maxlength="5" required>
+                    <input name="cvc" type="text" placeholder="CVC" min="3" maxlength="3" required>
+                </div>
+            </div>
+            <div class="form-100">
+                <input name="card-holder" type="text" placeholder="Cardholder's name" required>
+            </div>
+            <div class="form-100">
+                <input type="submit" value="Pay">
+            </div>
+        </form>
+    </div>
+</section>
+{% endif %}
+</body>
+</html>

@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LUXURY WHEELS | Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://kit.fontawesome.com/a108992fe6.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="intro"></div>
+<header id="heading">
+    <div>
+        <h1 class="h1"><a href="/home">luxury wheels</a>
+        </h1>
+
+        <h2 class="h1">
+            {% if current_user.is_authenticated %}
+            <i class="fa-solid fa-user"></i> {{ current_user.first_name }} {{ current_user.last_name }}
+            <a href="/logout">logout</a>
+            {% else %}
+            <a href="/login">login</a>
+            {% endif %}
+        </h2>
+    </div>
+</header>
+
+<h1>Welcome to Luxury Wheels</h1>
+<div class="reservation-form">
+    <form method="post">
+        <fieldset>
+            <legend>rent a vehicle now</legend>
+            <div class="error-data">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                <ul class=flashes>
+                    {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                {% endwith %}
+            </div>
+
+            <label for="vehicle-type">Choose your vehicle type:
+                <select id="vehicle-type" name="vehicle-type" required>
+                    <option value="">Select</option>
+                    <option name="vehicle-type" value="cars">Cars</option>
+                    <option name="vehicle-type" value="motorcycles">Motorcycle</option>
+                    <option name="vehicle-type" value="all">All vehicles</option>
+                </select>
+            </label>
+            <label for="pick-up-location"> Pick-up Location:
+                <input type="text" id="pick-up-location" name="pick-up-location" placeholder="City or airport" required>
+            </label>
+            <label for="pick-up-date">Pick-up Date:
+                <input type="date" id="pick-up-date" name="pick-up-date" placeholder="dd/mm/yyyy" required>
+            </label>
+            <label for="drop-off-date">Drop-off Date:
+                <input type="date" id="drop-off-date" name="drop-off-date" placeholder="dd/mm/yyyy" required>
+            </label>
+            <button type="submit">Find vehicle</button>
+        </fieldset>
+    </form>
+</div>
+{% if data_list %}
+<h2>Manage Reservations</h2>
+<div class="responsive-table">
+    <table>
+        <thead>
+        <tr>
+            <th>Client Name:</th>
+            <th>Car name:</th>
+            <th>Pick Up Day:</th>
+            <th>Drop off date:</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for list in data_list %}
+        <tr>
+            {% for value in list %}
+            <td>{{ value }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="management-reservations">
+    <form class="pick-up-day" method="post">
+        <select name="car-name-management" required>
+            <option value="">Select the car</option>
+            {% for value in data_list %}
+            <option value="{{ value[1] }}">{{ value[1] }}</option>
+            {% endfor %}
+        </select>
+        <label>Pick Up Date:</label>
+        <input type="date" name="pick-up-date-management" required>
+        <button type="submit">CHANGE</button>
+    </form>
+    <form class="drop-off-date" method="post">
+        <select name="car-name-management" required>
+            <option value="">Select the car</option>
+            {% for value in data_list %}
+            <option value="{{ value[1] }}">{{ value[1] }}</option>
+            {% endfor %}
+        </select>
+        <label>Drop Off Date:</label>
+        <input type="date" name="drop-off-date-management" required>
+        <button type="submit">CHANGE</button>
+    </form>
+    <form class="cancellation" method="post">
+        <select name="car-name-management" required>
+            <option value="">Select the car</option>
+            {% for value in data_list %}
+            <option value="{{ value[1] }}">{{ value[1] }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Cancel reservation</button>
+    </form>
+</div>
+{% endif %}
+</body>
+</html>

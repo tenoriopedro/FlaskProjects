@@ -1,0 +1,595 @@
+/* All pages */
+body {
+    margin: 0;
+    font-family: "consolas", "monospace";
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    background: url('https://conteudo.imguol.com.br/blogs/36/files/2014/01/CARRO_E_MOTO-1024x576.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+body h1, body h2 {
+    color: white;
+    text-align: center;
+    margin-top: 30px;
+    font-size: 40px;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    list-style: none;
+}
+
+.success {
+    color: green;
+    font-weight: bold;
+    text-transform: uppercase;
+    list-style: none;
+
+}
+
+/* Login page, Register page */
+
+.login-page {
+    width: 360px;
+    padding: 1% 0 0;
+    margin: auto;
+}
+
+.register-page {
+    width: 360px;
+    padding: 6% 0 0;
+    margin: auto;
+}
+
+.form {
+    position: relative;
+    z-index: 1;
+    background: rgba(0,0,0, 0.9);
+    max-width: 360px;
+    margin: 0 auto 100px;
+    padding: 45px;
+    text-align: left;
+    box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    border: 1px solid white;
+    color: white;
+}
+
+.form input, .form select {
+    font-family: "consolas", "monospace";
+    background: #f2f2f2;
+    width: 100%;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.form button {
+    font-family: "consolas", "monospace";
+    text-transform: uppercase;
+    background: #4CAF50;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.form button:hover,.form button:active,.form button:focus {
+    background: #43A047;
+}
+.form .message{
+    margin: 15px 0 0;
+    color: #b3b3b3;
+    font-size: 15px;
+}
+.form .message a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+    max-width: 300px;
+    margin: 0 auto;
+}
+.container:before, .container:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.container .info {
+    margin: 50px auto;
+    text-align: center;
+}
+.container .info h1 {
+    margin: 0 0 15px;
+    padding: 0;
+    font-size: 36px;
+    font-weight: 300;
+    color: #1a1a1a;
+}
+.container .info span {
+    color: #4d4d4d;
+    font-size: 12px;
+}
+.container .info span a {
+    color: #000000;
+    text-decoration: none;
+}
+.container .info span .fa {
+    color: #EF3B3A;
+}
+
+/* home.html */
+
+.reservation-page {
+    width: 360px;
+    padding 30px;
+    margin: 100px;
+}
+
+#heading {
+    background: rgba(255,255,255, 0.9);
+}
+
+#heading div {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+#heading .h1 {
+    padding: 10px 0;
+    font-size: 20px;
+    text-transform: uppercase;
+    color: black;
+    margin: 25px;
+}
+
+#heading a {
+    color: black;
+    text-decoration: none;
+    padding: 20px;
+}
+
+.reservation-form {
+    display: flex;
+}
+
+.reservation-form .error-data {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -30px;
+}
+
+.reservation-form fieldset {
+    width: 1300px;
+    height: 220px;
+    margin: 70px 30px 30px 100px;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 20px;
+}
+
+.reservation-form legend {
+    color: #ffff;
+    font-size: 30px;
+    text-transform: uppercase;
+    margin-left: calc(13% - 35px - 8px);
+    font-weight: bold;
+}
+
+.reservation-form input {
+    display: inline-block;
+    font-family: "consolas", "monospace";
+    font-size: 14px;
+    padding: 15px;
+    margin: 15px 10px 30px 0px;
+    width: 186.8px;
+}
+
+.reservation-form select {
+    display: block;
+    font-family: "consolas", "monospace";
+    font-size: 14px;
+    padding: 15px 30px 15px 15px;
+    margin: 15px 10px 30px 0px;
+    width: 220px;
+}
+
+.reservation-form label {
+    display: inline-block;
+    width: 250px;
+    height: 130px;
+    color: #ffff;
+    margin-top: 15px;
+    margin-left: 60px;
+    font-size: 18px;
+}
+
+.reservation-form h2 {
+    color: #ffff;
+    text-align: right;
+    margin: 0 0 25px;
+    font-size: 20px;
+}
+
+.reservation-form button {
+    position: relative;
+    font-family: "consolas", "monospace";
+    text-transform: uppercase;
+    background: #FFDF00;
+    width: 15%;
+    border: 0;
+    padding: 15px;
+    color: black;
+    font-size: 15px;
+    cursor: pointer;
+    left: 42%;
+    bottom: 15px;
+}
+
+.reservation-form button:hover, .reservation-form button:active,.reservation-form button:focus {
+    background: #D4AF37;
+}
+
+#heading h2 a:hover, #heading h2 a:focus, #heading h2 a:active {
+    background: black;
+    color: white;
+}
+
+/* Results page */
+
+.flashes {
+    padding: 0;
+    margin: 10px;
+}
+.not-found {
+    background: white;
+    display: flex;
+    justify-content: center;
+    width: 20%;
+    margin-left: 30%;
+    margin-top: -40px;
+}
+
+.car-unavailable {
+    background: white;
+    display: flex;
+    justify-content: center;
+    width: 20%;
+    margin-left: 30%;
+    margin-top: -40px;
+}
+
+.grid-container {
+    display: inline-grid;
+    grid-template-columns: auto auto;
+    margin: 50px 0 0 140px;
+    padding-bottom: 50px;
+}
+
+.grid-container h2 {
+    color: white;
+    margin-top: 30px;
+    font-size: 40px;
+}
+
+.grid-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    width: 600px;
+    font-size: 18px;
+    text-align: left;
+}
+
+.grid-item img {
+    width: 140px;
+    height: 100px;
+    float: left;
+    margin: 30px 100px 30px 30px;
+}
+
+.grid-item .daily-price-car {
+    display: flow;
+    position: relative;
+    left: 415px;
+    width: 200px;
+    top: 7px;
+    height: 0;
+}
+
+.grid-item .daily-price-motorcycle {
+    display: flow;
+    position: relative;
+    left: 415px;
+    width: 200px;
+    bottom: 35px;
+    height: 0;
+}
+
+.grid-item .total {
+    margin: 0;
+    font-weight: bold;
+    position: relative;
+    left: 15px;
+    font-size: 20px;
+}
+
+.grid-item .daily {
+    margin: 0;
+    font-size: 13px;
+    position: relative;
+    left: 18px;
+}
+
+.grid-item button {
+    font-family: "consolas", "monospace";
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    margin: 0 0 10px -15%;
+    font-size: 15px;
+}
+
+.grid-item .button-car {
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    margin: 0 0 10px 30%;
+    font-size: 15px;
+    font-family: "consolas", "monospace"
+}
+
+.grid-item button:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.menu-nav {
+    position: relative;
+    width: 140px;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255,255,255, 0.95);
+    margin-left: 140px;
+}
+
+.menu-nav h3 {
+    margin: 20px;
+    font-size: larger;
+}
+
+.menu-nav .menuToggle {
+    position: relative;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 7px;
+}
+
+.menu-nav .menuToggle::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background: #555;
+    box-shadow: 0 10px #555, 0 -10px #555;
+}
+
+.menu-nav .filter {
+    position: absolute;
+    top: 100%;
+    width: 380px;
+    height: 300px;
+    background: rgba(255,255,255);
+    padding: 10px;
+    visibility: hidden;
+    opacity: 0;
+    transition: .5s;
+    overflow: auto;
+}
+
+.menu-nav .filter.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.menu-nav .filter form {
+    padding: 10px;
+}
+
+.menu-nav .filter button {
+    float: right;
+    cursor: pointer;
+}
+
+.menu-nav .filter hr {
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px
+}
+
+.menu-nav .filter label {
+    display: block;
+    padding: 2px;
+}
+
+.menu-nav .button-filter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-nav .button-filter button {
+    font-family: "consolas", "monospace";
+    text-transform: uppercase;
+    background: #4CAF50;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+/* Payment page */
+
+section.payment {
+    display: flex;
+    max-width: 1100px;
+    justify-content: space-around;
+    padding: 0 2%;
+    margin: 90px auto;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.description-payment ul {
+    color: black;
+    list-style: None;
+}
+
+.description-payment li {
+    margin: 7px;
+}
+
+.description-payment h3 {
+    color: black;
+}
+
+.description-payment h2 {
+    color: black;
+    font-size: 50px;
+}
+
+.description-payment {
+    width: 40%;
+    padding: 0 50px 0 0;
+}
+
+.form-payment {
+    padding: 30px 30px 50px 30px;
+    width: 50%;
+    border-left: 1px solid;
+    color: black;
+
+}
+
+.form-payment input[type=text] {
+    width: 100%;
+    height: 40px;
+    border: 1px solid #ccc;
+    padding-left: 10px;
+}
+
+.form-payment form {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.form-payment label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.form-100 {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.form-50 {
+    display: flex;
+    width: 102.5%;
+    margin-bottom: 10px;
+
+}
+
+.form-payment input[type=submit] {
+    width: 100%;
+    height: 40px;
+    border: 0;
+    cursor: pointer;
+    background-color: rgb(0, 116, 212);
+    color: white;
+}
+
+/* Management */
+
+table {
+    border-collapse: collapse;
+    width: 800px;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+table thead{
+    background: rgba(255, 255, 255, 1)
+}
+
+table td, table th {
+    border: 1px solid black;
+    padding: 10px;
+    text-align: left;
+}
+
+.responsive-table {
+    display: flex;
+    justify-content: center;
+    margin: 100px 0;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.management-reservations {
+    position: relative;
+    background: rgba(255, 255, 255, 0.8);
+    width: 600px;
+    left: 365px;
+    margin-top: 30px;
+}
+
+.management-reservations button {
+    cursor: pointer;
+    margin-left: 15px;
+}
+
+.management-reservations input {
+    margin-left: 10px;
+}
+
+.pick-up-day, .drop-off-date, .cancellation {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.cancellation button {
+    position: relative;
+    left: 10px;
+}
+
+.error-data-management {
+    margin-top: -50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    width: 39.15%;
+    margin-left: 365.5px;
+}
